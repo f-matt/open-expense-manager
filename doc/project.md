@@ -17,7 +17,7 @@ $ npm install primevue @primeuix/themes
 
 ## Tailwind library
 
-TODO
+https://tailwindcss.com/docs/installation/using-vite
 
 ## Primevue + tailwind integration
 
