@@ -61,7 +61,7 @@
 		</AppBar.Toolbar>
 	</AppBar>
 
-	<div class="grid grid-cols-1 md:grid-cols-[auto_1fr]" style="min-height:80vh">
+	<div class="grid grid-cols-1 md:grid-cols-[auto_1fr]" style="min-height:84vh">
 		<main class="space-y-4 p-4">
 			<div style="display: contents">{@render children()}</div>
 		</main>
