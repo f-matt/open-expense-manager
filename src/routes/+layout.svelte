@@ -15,8 +15,8 @@
 
 	function handleMenu(x:any) {
 		switch (x.value) {
-			case "x":
-				goto("/x");
+			case "expenses":
+				goto("/expenses");
 				break;
 			default:
 				goto("/home");
@@ -39,8 +39,8 @@
 					<Portal>
 						<Menu.Positioner>
 							<Menu.Content>
-								<Menu.Item value="optionA">
-									<Menu.ItemText>Option A</Menu.ItemText>
+								<Menu.Item value="expenses">
+									<Menu.ItemText>Expenses</Menu.ItemText>
 								</Menu.Item>
 								<Menu.Item value="optionB">
 									<Menu.ItemText>Option B</Menu.ItemText>
