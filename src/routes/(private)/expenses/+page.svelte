@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
 	import type { Expense } from "$lib/model/Expense";
 	import { findAllExpenses } from "$lib/services/ExpensesService";
 	import { toaster } from "$lib/stores/toast";
@@ -25,6 +26,10 @@
       selected = undefined;
     else
       selected = e;
+  }
+
+  function newExpense() {
+    goto("/expense");
   }
 </script>
 
@@ -54,3 +59,9 @@
     </table>
   </div>
 {/if}
+
+<div class="w-full max-w-md space-y-4 p-4">
+  <fieldset class="flex justify-end">
+    <button type="button" class="btn preset-outlined-surface-300-700 w-full" onclick={newExpense}>New</button>
+  </fieldset>
+</div>

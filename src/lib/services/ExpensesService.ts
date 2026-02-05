@@ -9,3 +9,16 @@ export async function findAllExpenses() : Promise<Expense[]> {
     throw new CustomRuntimeError("Error fetching existing expenses.");
   });
 }
+
+export async function createExpense(expense: Expense) {
+  return fetch("/api/expenses/", {
+    method: "POST",
+    body: JSON.stringify(expense),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .catch(() => {
+    throw new CustomRuntimeError("Error saving expense existing expenses.");
+  });
+}
