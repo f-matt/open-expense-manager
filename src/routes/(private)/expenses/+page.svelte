@@ -2,6 +2,7 @@
 	import { goto } from "$app/navigation";
 	import type { Expense } from "$lib/model/Expense";
 	import { findAllExpenses } from "$lib/services/ExpensesService";
+	import { selectedExpense } from "$lib/stores/expenses";
 	import { toaster } from "$lib/stores/toast";
 	import { CustomRuntimeError } from "$lib/util/CustomRuntimeError";
 
@@ -29,8 +30,20 @@
   }
 
   function newExpense() {
+    selectedExpense.set(null);
     goto("/expense");
   }
+
+  function editExpense() {
+    if (!selected) {
+      toaster.error({ description: "You must select an expense to edit." });
+      return;
+    }
+
+    selectedExpense.set(selected);
+    goto("/expense");
+  }
+
 </script>
 
 <div class="text-lg text-center mb-8">Recurring Expenses</div>
@@ -60,8 +73,8 @@
   </div>
 {/if}
 
-<div class="w-full max-w-md space-y-4 p-4">
-  <fieldset class="flex justify-end">
-    <button type="button" class="btn preset-outlined-surface-300-700 w-full" onclick={newExpense}>New</button>
-  </fieldset>
+<div class="flex flex-col gap-4">
+  <button type="button" class="btn preset-outlined-surface-300-700 w-full" onclick={newExpense}>New</button>
+
+  <button type="button" class="btn preset-outlined-surface-300-700 w-full" onclick={editExpense}>Edit</button>
 </div>

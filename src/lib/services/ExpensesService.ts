@@ -10,15 +10,28 @@ export async function findAllExpenses() : Promise<Expense[]> {
   });
 }
 
-export async function createExpense(expense: Expense) {
-  return fetch("/api/expenses/", {
-    method: "POST",
-    body: JSON.stringify(expense),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-  .catch(() => {
-    throw new CustomRuntimeError("Error saving expense existing expenses.");
-  });
+export async function saveExpense(expense: Expense) {
+  if (expense.id) {
+    return fetch("/api/expenses/", {
+      method: "PATCH",
+      body: JSON.stringify(expense),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .catch(() => {
+      throw new CustomRuntimeError("Error updating expense data.");
+    });
+  } else {
+    return fetch("/api/expenses/", {
+      method: "POST",
+      body: JSON.stringify(expense),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .catch(() => {
+      throw new CustomRuntimeError("Error saving expense.");
+    });
+  }
 }
