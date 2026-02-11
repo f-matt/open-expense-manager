@@ -1,13 +1,16 @@
 import type { Expense } from "$lib/model/Expense";
+import { api } from "$lib/util/api";
 import { CustomRuntimeError } from "$lib/util/CustomRuntimeError";
 
 export async function findAllExpenses() : Promise<Expense[]> {
-  return fetch("/api/expenses/").then(r => {
-    return r.json();
-  })
-  .catch(() => {
+  try {
+    return api("/api/expenses/");
+  } catch (error) {
+    if (error instanceof CustomRuntimeError)
+      throw error;
+
     throw new CustomRuntimeError("Error fetching existing expenses.");
-  });
+  }
 }
 
 export async function saveExpense(expense: Expense) {
