@@ -3,7 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import { goto } from '$app/navigation';
 	import { AppBar, Menu, Portal, Toast } from '@skeletonlabs/skeleton-svelte';
-	import { LogOutIcon, MenuIcon } from '@lucide/svelte';
+	import { LogOutIcon, MenuIcon, ChevronRightIcon } from '@lucide/svelte';
 	import { toaster } from '$lib/stores/toast';
 
 	let { children } = $props();
@@ -15,6 +15,9 @@
 
 	function handleMenu(x:any) {
 		switch (x.value) {
+			case "recurring":
+				goto("/recurring-expenses");
+				break;
 			case "expenses":
 				goto("/expenses");
 				break;
@@ -39,11 +42,25 @@
 					<Portal>
 						<Menu.Positioner>
 							<Menu.Content>
+								<Menu>
+									<Menu.TriggerItem value="configuration">
+										<Menu.ItemText>Configuration</Menu.ItemText>
+										<Menu.ItemIndicator>
+											<ChevronRightIcon class="size-4" />
+										</Menu.ItemIndicator>
+									</Menu.TriggerItem>
+									<Portal>
+										<Menu.Positioner>
+											<Menu.Content>
+												<Menu.Item value="recurring">
+													<Menu.ItemText>Recurring Expenses</Menu.ItemText>
+												</Menu.Item>
+											</Menu.Content>
+										</Menu.Positioner>
+									</Portal>
+								</Menu>
 								<Menu.Item value="expenses">
 									<Menu.ItemText>Expenses</Menu.ItemText>
-								</Menu.Item>
-								<Menu.Item value="optionB">
-									<Menu.ItemText>Option B</Menu.ItemText>
 								</Menu.Item>
 							</Menu.Content>
 						</Menu.Positioner>

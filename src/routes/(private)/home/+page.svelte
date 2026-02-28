@@ -1,1 +1,1 @@
-<h1>Home</h1>
+<h1>Welcome! Chose one of the available options on the top left menu.</h1>

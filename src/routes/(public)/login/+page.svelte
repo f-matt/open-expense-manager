@@ -47,16 +47,16 @@
   <fieldset class="space-y-4">
     <label class="label">
       <span class="label-text">Username</span>
-      <input class="input" type="text" placeholder="Username" bind:value={username} />
+      <input id="username" class="input" type="text" placeholder="Username" bind:value={username} />
     </label>
 
     <label class="label">
       <span class="label-text">Password</span>
-      <input class="input" type="password" placeholder="Password" bind:value={password} />
+      <input id="password" class="input" type="password" placeholder="Password" bind:value={password} />
     </label>
   </fieldset>
 
   <fieldset class="flex justify-end">
-    <button type="button" class="btn preset-outlined-surface-300-700" onclick={login}>Login</button>
+    <button id="login" type="button" class="btn preset-outlined-surface-300-700" onclick={login}>Login</button>
   </fieldset>
 </form>
