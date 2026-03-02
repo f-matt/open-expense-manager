@@ -1,6 +1,10 @@
+import type { RecurringExpense } from "./RecurringExpense";
+import type { MonthlyExpenses } from "./MonthlyExpenses";
+
 export interface Expense {
   id?: number;
-  name?: string;
-  value?: number;
-  active?: boolean;
+  recurringExpense?: RecurringExpense;
+  monthExpenses?: MonthlyExpenses;
+  value?: boolean;
+  processed?: boolean;
 }

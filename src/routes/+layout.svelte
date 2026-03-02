@@ -19,7 +19,7 @@
 				goto("/recurring-expenses");
 				break;
 			case "expenses":
-				goto("/expenses");
+				goto("/monthly-expenses");
 				break;
 			default:
 				goto("/home");
@@ -42,7 +42,7 @@
 					<Portal>
 						<Menu.Positioner>
 							<Menu.Content>
-								<Menu>
+								<Menu onSelect={handleMenu}>
 									<Menu.TriggerItem value="configuration">
 										<Menu.ItemText>Configuration</Menu.ItemText>
 										<Menu.ItemIndicator>

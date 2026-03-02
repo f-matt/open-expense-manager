@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import type { Expense } from "$lib/model/Expense";
+	import type { RecurringExpense } from "$lib/model/RecurringExpense";
 	import { findAllExpenses } from "$lib/services/ExpensesService";
 	import { selectedExpense } from "$lib/stores/expenses";
 	import { toaster } from "$lib/stores/toast";
 	import { CustomRuntimeError } from "$lib/util/CustomRuntimeError";
 
-  let expenses: Expense[] = $state([]);
+  let expenses: RecurringExpense[] = $state([]);
 
   findAllExpenses().then(r => {
     expenses = r;
@@ -20,9 +20,9 @@
     toaster.error({ title: "Error", description: "Unknown error while fetching expenses." });
   });
 
-  let selected: Expense | undefined = $state();
+  let selected: RecurringExpense | undefined = $state();
 
-  function select(e: Expense) {
+  function select(e: RecurringExpense) {
     if (selected == e)
       selected = undefined;
     else

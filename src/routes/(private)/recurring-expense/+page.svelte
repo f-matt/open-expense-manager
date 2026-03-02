@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import type { Expense } from "$lib/model/Expense";
+	import type { RecurringExpense } from "$lib/model/RecurringExpense";
 	import { saveExpense } from "$lib/services/ExpensesService";
 	import { selectedExpense } from "$lib/stores/expenses";
 	import { toaster } from "$lib/stores/toast";
 	import { CustomRuntimeError } from "$lib/util/CustomRuntimeError";
 
-  let expense = $selectedExpense || { active: true } as Expense;
+  let expense = $selectedExpense || { active: true } as RecurringExpense;
 
   function save() {
     if (!expense.name) {
@@ -16,7 +16,7 @@
 
     saveExpense(expense).then(() => {
       toaster.info({ description: "Expense succesfully saved!" });
-      expense = {} as Expense;
+      expense = {} as RecurringExpense;
     }).catch(error => {
       if (error instanceof CustomRuntimeError) {
         toaster.error({ description: error.message });
