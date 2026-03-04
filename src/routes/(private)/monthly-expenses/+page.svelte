@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import type { MonthlyExpenses } from "$lib/model/MonthlyExpenses";
-	import { findMonthExpenses } from "$lib/services/ExpensesService";
+	import { findMonthlyExpenses } from "$lib/services/ExpensesService";
 	import { selectedExpense } from "$lib/stores/expenses";
 	import { selectedMonthlyExpenses } from "$lib/stores/monthly-expenses";
 	import { toaster } from "$lib/stores/toast";
@@ -9,7 +9,7 @@
 
   let monthExpenses: MonthlyExpenses[] = $state([]);
 
-  findMonthExpenses().then(r => {
+  findMonthlyExpenses().then(r => {
     monthExpenses = r;
   })
   .catch(error => {

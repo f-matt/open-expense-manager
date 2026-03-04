@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
+	import CustomDatePicker from "$lib/components/CustomDatePicker.svelte";
+	import CustomMonthPicker from "$lib/components/CustomMonthPicker.svelte";
 	import type { Expense } from "$lib/model/Expense";
 	import type { MonthlyExpenses } from "$lib/model/MonthlyExpenses";
 	import { saveMonthlyExpenses } from "$lib/services/ExpensesService";
-	import { selectedExpense } from "$lib/stores/expenses";
 	import { selectedMonthlyExpenses } from "$lib/stores/monthly-expenses";
 	import { toaster } from "$lib/stores/toast";
 	import { CustomRuntimeError } from "$lib/util/CustomRuntimeError";
@@ -11,6 +12,8 @@
   let monthlyExpenses: MonthlyExpenses = $state($selectedMonthlyExpenses || { } as MonthlyExpenses);
 
   let selected: Expense | undefined = $state();
+
+  let tmp: string = $state("");
 
   function select(e: Expense) {
     if (selected == e)
@@ -39,18 +42,22 @@
   }
 
   function back() {
-    goto("/expenses")
+    goto("/monthly-expenses")
   }
 </script>
 
-<div class="text-lg text-center mb-8">Monthly Expenses</div>
+<div class="text-lg text-center mb-8">Monthly Expenses Details</div>
 
 <form>
   <div class="flex flex-col gap-4 items-center">
     <label class="label">
-      <span class="label-text">Reference Date</span>
-      <input class="input" type="text" bind:value={monthlyExpenses.referenceDate} />
+      <CustomMonthPicker label="Reference Date" bind:value={tmp} />
     </label>
+
+    <label class="label">
+      <CustomDatePicker label="Reference Date" bind:value={monthlyExpenses.referenceDate} />
+    </label>
+
 
     {#if monthlyExpenses && monthlyExpenses.expenses && monthlyExpenses.expenses.length > 0}
       <div class="table-wrap">
